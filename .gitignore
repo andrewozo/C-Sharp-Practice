@@ -1,1 +1,7 @@
 TestProject.sln
+bin
+.vscode
+obj
+TestProject.csproj
+Debug
+net7.0
