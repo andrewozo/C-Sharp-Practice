@@ -1,7 +1,5 @@
 TestProject.sln
-bin\Debug\net7.0
-.vscode
-obj
+/obj
+.vscode/
+
 TestProject.csproj
-Debug
-net7.0

@@ -86,5 +86,5 @@ for (int i = 0; i < myStrings.Length; i++)
     }
 
     mySentence = myString.Trim();
-    Console.WriteLine(mySentence);
+    Console.WriteLine(mySentence + "!");
 }
