@@ -1,81 +1,133 @@
 ﻿// See https://aka.ms/new-console-template for more information
 
-// decimal price = 123.45m;
-// int discount = 50;
+// string message = "What is the value <span>between the tags</span>";
 
-// Console.WriteLine($"Price: {price:C} (save {discount:C})");
+// const string openSpan = "<span>";
+// const string closeSpan = "</span>";
 
-// decimal measurement = 123456.78912m;
-// Console.WriteLine($"Measurment: {measurement:N} units");
+// int openingPosition = message.IndexOf(openSpan);
+// int closingPosition = message.IndexOf(closeSpan);
 
-// decimal tax = .36785m;
-// Console.WriteLine($"Tax Rate: {tax:P2}");
+// openingPosition += openSpan.Length;
+// int length = closingPosition - openingPosition;
 
-// decimal price = 67.55m;
-// decimal salePrice = 59.99m;
+// Console.WriteLine(message.Substring(openingPosition, length));
 
-// string yourDiscount = String.Format(
-//     "You saved {0:C2} off the regular {1:C2} price. ",
-//     (price - salePrice),
-//     salePrice
+// string message = "(what if) I am (only interested) in the last (set of parantheses)?";
+
+// while (true)
+// {
+//     int openingPosition = message.IndexOf("(");
+
+//     if (openingPosition == -1)
+//         break;
+
+//     openingPosition += 1;
+//     int closingPosition = message.IndexOf(")");
+//     int length = closingPosition - openingPosition;
+//     Console.WriteLine(message.Substring(openingPosition, length));
+
+//     message = message.Substring(closingPosition + 1);
+// }
+
+
+
+
+// string message = "Help (find) the {opening symbols}";
+// Console.WriteLine($"Searching THIS Message: {message}");
+
+// char[] openSymbols = { '[', '{', '(' };
+// int startingPosition = 6;
+// int openingPosition = message.IndexOfAny(openSymbols);
+// Console.WriteLine($"Found without using startingPosition: {message.Substring(openingPosition)}");
+
+// openingPosition = message.IndexOfAny(openSymbols, startingPosition);
+// Console.WriteLine(
+//     $"Found WITH using startingPostion: {startingPosition}: {message.Substring(openingPosition)}"
 // );
 
-// yourDiscount += $"A discount of {(price - salePrice) / price:P2}";
 
-// Console.WriteLine(yourDiscount);
+// string message =
+//     "(What if) I have [different symbols] but every {open symbol} needs [matching closing symbol]?";
 
-// int invoiceNumber = 1201;
-// decimal productShares = 25.4568m;
-// decimal subtotal = 2750.00m;
-// decimal taxPercentage = .15825m;
-// decimal total = 3185.19m;
+// char[] openSymbols = { '[', '{', '(' };
 
-// Console.WriteLine($"Invoice Number: {invoiceNumber}");
-// Console.WriteLine($"   Shares: {productShares:N3} Product");
-// Console.WriteLine($"      Sub Total: {subtotal:C}");
-// Console.WriteLine($"         Tax Percentage: {taxPercentage:P2}");
-// Console.WriteLine($"      Total Billed: {total:C}");
+// int closingPosition = 0;
 
-// string input = "Pad this";
-// Console.WriteLine(input.PadLeft(12, '-'));
+// while (true)
+// {
+//     int openingPosition = message.IndexOfAny(openSymbols, closingPosition);
 
-// string paymentId = "769C";
-// string payeeName = "Mr. Stephen Ortega";
-// string paymentAmount = "$5,000.00";
+//     if (openingPosition == -1)
+//         break;
 
-// var formattedLine = paymentId.PadRight(6);
-// formattedLine += payeeName.PadRight(24);
-// formattedLine += paymentAmount.PadLeft(10);
-// Console.WriteLine("1234567890123456789012345678901234567890");
-// Console.WriteLine(formattedLine);
-string customerName = "Ms. Barros";
+//     string currentSymbol = message.Substring(openingPosition, 1);
 
-string currentProduct = "Magic Yield";
-int currentShares = 2975000;
-decimal currentReturn = 0.1275m;
-decimal currentProfit = 55000000.0m;
+//     char matchingSymbol = ' ';
 
-string newProduct = "Glorious Future";
-decimal newReturn = 0.13125m;
-decimal newProfit = 63000000.0m;
+//     switch (currentSymbol)
+//     {
+//         case "[":
+//             matchingSymbol = ']';
+//             break;
 
-// Your logic here
-Console.WriteLine($"Dear {customerName},");
-Console.WriteLine(
-    "As a customer of our Magic Yield offering we are excited to tell you about a new financial product that would dramatically increase your return."
-);
+//         case "{":
+//             matchingSymbol = '}';
+//             break;
 
-Console.WriteLine($"Currently, you own {currentShares:N} shares at a return of {currentReturn:P}");
+//         case "(":
+//             matchingSymbol = ')';
+//             break;
+//     }
 
-Console.WriteLine(
-    $"Our new product, {newProduct} offers a return of {newReturn:P}.  Given your current volume, your potential profit would be {newProfit:N}."
-);
+//     openingPosition += 1;
+//     closingPosition = message.IndexOf(matchingSymbol, openingPosition);
 
-Console.WriteLine("Here's a quick comparison:\n");
+//     int length = closingPosition - openingPosition;
+//     Console.WriteLine(message.Substring(openingPosition, length));
+// }
 
-string comparisonMessage =
-    $"{currentProduct.PadRight(19)} {currentReturn:P}   {currentProfit:C} \n{newProduct.PadRight(19)} {newReturn:P}   {newProfit:C}";
 
-// Your logic here
+// string data = "12345John Smith          5000  3  ";
+// string updatedData = data.Remove(5, 20);
+// Console.WriteLine(updatedData);
 
-Console.WriteLine(comparisonMessage);
+// string message = "This--is--ex-amp-le--da-ta";
+// message = message.Replace("--", " ");
+// message = message.Replace("-", "");
+// Console.WriteLine(message);
+
+
+
+
+const string input = "<div><h2>Widgets &trade;</h2><span>5000</span></div>";
+
+string quantity = "";
+string output = "";
+
+// Your work here
+
+const string openSpan = "<span>";
+const string closingSpan = "</span>";
+const string openDiv = "<div>";
+const string closeDiv = "</div>";
+
+int quantityStart = input.IndexOf(openSpan);
+int quantityEnd = input.IndexOf(closingSpan);
+
+int divStart = input.IndexOf(openDiv);
+int divEnd = input.IndexOf(closeDiv);
+
+quantityStart += openSpan.Length;
+divStart += openDiv.Length;
+
+int quantLength = quantityEnd - quantityStart;
+int divLength = divEnd - divStart;
+
+quantity = input.Substring(quantityStart, quantLength);
+output = input.Substring(divStart, divLength);
+
+output = output.Replace("trade", "reg");
+
+Console.WriteLine($"Quantity: {quantity}");
+Console.WriteLine($"Output: {output}");
