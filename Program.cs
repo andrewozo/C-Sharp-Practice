@@ -1,133 +1,211 @@
 ﻿// See https://aka.ms/new-console-template for more information
 
-// string message = "What is the value <span>between the tags</span>";
 
-// const string openSpan = "<span>";
-// const string closeSpan = "</span>";
+// Console.WriteLine("Generating Random Numbers");
+// DisplayRandomNumber();
 
-// int openingPosition = message.IndexOf(openSpan);
-// int closingPosition = message.IndexOf(closeSpan);
-
-// openingPosition += openSpan.Length;
-// int length = closingPosition - openingPosition;
-
-// Console.WriteLine(message.Substring(openingPosition, length));
-
-// string message = "(what if) I am (only interested) in the last (set of parantheses)?";
-
-// while (true)
+// void DisplayRandomNumber()
 // {
-//     int openingPosition = message.IndexOf("(");
+//     Random random = new Random();
 
-//     if (openingPosition == -1)
-//         break;
-
-//     openingPosition += 1;
-//     int closingPosition = message.IndexOf(")");
-//     int length = closingPosition - openingPosition;
-//     Console.WriteLine(message.Substring(openingPosition, length));
-
-//     message = message.Substring(closingPosition + 1);
-// }
-
-
-
-
-// string message = "Help (find) the {opening symbols}";
-// Console.WriteLine($"Searching THIS Message: {message}");
-
-// char[] openSymbols = { '[', '{', '(' };
-// int startingPosition = 6;
-// int openingPosition = message.IndexOfAny(openSymbols);
-// Console.WriteLine($"Found without using startingPosition: {message.Substring(openingPosition)}");
-
-// openingPosition = message.IndexOfAny(openSymbols, startingPosition);
-// Console.WriteLine(
-//     $"Found WITH using startingPostion: {startingPosition}: {message.Substring(openingPosition)}"
-// );
-
-
-// string message =
-//     "(What if) I have [different symbols] but every {open symbol} needs [matching closing symbol]?";
-
-// char[] openSymbols = { '[', '{', '(' };
-
-// int closingPosition = 0;
-
-// while (true)
-// {
-//     int openingPosition = message.IndexOfAny(openSymbols, closingPosition);
-
-//     if (openingPosition == -1)
-//         break;
-
-//     string currentSymbol = message.Substring(openingPosition, 1);
-
-//     char matchingSymbol = ' ';
-
-//     switch (currentSymbol)
+//     for (int i = 0; i < 5; i++)
 //     {
-//         case "[":
-//             matchingSymbol = ']';
-//             break;
-
-//         case "{":
-//             matchingSymbol = '}';
-//             break;
-
-//         case "(":
-//             matchingSymbol = ')';
-//             break;
+//         Console.Write($"{random.Next(1, 100)} ");
 //     }
 
-//     openingPosition += 1;
-//     closingPosition = message.IndexOf(matchingSymbol, openingPosition);
-
-//     int length = closingPosition - openingPosition;
-//     Console.WriteLine(message.Substring(openingPosition, length));
+//     Console.WriteLine();
 // }
 
 
-// string data = "12345John Smith          5000  3  ";
-// string updatedData = data.Remove(5, 20);
-// Console.WriteLine(updatedData);
+// using System;
 
-// string message = "This--is--ex-amp-le--da-ta";
-// message = message.Replace("--", " ");
-// message = message.Replace("-", "");
-// Console.WriteLine(message);
+// int[] times = { 800, 1200, 1600, 2000 };
+// int diff = 0;
+
+// Console.WriteLine("Enter current GMT");
+// int currentGMT = Convert.ToInt32(Console.ReadLine());
+
+// Console.WriteLine("Current Medicine Schedule:");
+
+// /* Format and display medicine times */
+// DisplayTimes();
+
+// Console.WriteLine();
+
+// Console.WriteLine("Enter new GMT");
+// int newGMT = Convert.ToInt32(Console.ReadLine());
+
+// if (Math.Abs(newGMT) > 12 || Math.Abs(currentGMT) > 12)
+// {
+//     Console.WriteLine("Invalid GMT");
+// }
+// else if (newGMT <= 0 && currentGMT <= 0 || newGMT >= 0 && currentGMT >= 0)
+// {
+//     diff = 100 * (Math.Abs(newGMT) - Math.Abs(currentGMT));
+
+//     /* Adjust the times by adding the difference, keeping the value within 24 hours */
+//     AdjustTimes();
+// }
+// else
+// {
+//     diff = 100 * (Math.Abs(newGMT) + Math.Abs(currentGMT));
+
+//     /* Adjust the times by adding the difference, keeping the value within 24 hours */
+//     AdjustTimes();
+// }
+
+// Console.WriteLine("New Medicine Schedule:");
+// DisplayTimes();
+
+// /* Format and display medicine times */
 
 
+// void DisplayTimes()
+// {
+//     foreach (int val in times)
+//     {
+//         string time = val.ToString();
+//         int len = time.Length;
+
+//         if (len >= 3)
+//         {
+//             time = time.Insert(len - 2, ":");
+//         }
+//         else if (len == 2)
+//         {
+//             time = time.Insert(0, "0:");
+//         }
+//         else
+//         {
+//             time = time.Insert(0, "0:0");
+//         }
+
+//         Console.Write($"{time} ");
+//     }
+// }
+
+// void AdjustTimes()
+// {
+//     for (int i = 0; i < times.Length; i++)
+//     {
+//         times[i] = ((times[i] + diff)) % 2400;
+//     }
+// }
+
+// Console.WriteLine();
 
 
-const string input = "<div><h2>Widgets &trade;</h2><span>5000</span></div>";
+/*
+if ipAddress consists of 4 numbers
+and
+if each ipAddress number has no leading zeroes
+and
+if each ipAddress number is in range 0 - 255
 
-string quantity = "";
-string output = "";
+then ipAddress is valid
 
-// Your work here
+else ipAddress is invalid
+*/
 
-const string openSpan = "<span>";
-const string closingSpan = "</span>";
-const string openDiv = "<div>";
-const string closeDiv = "</div>";
+// string[] ipv4Input = { "107.31.1.5", "255.0.0.255", "555..0.555", "255...255" };
+// string[] address;
+// bool validLength = false;
+// bool validZeroes = false;
+// bool validRange = false;
 
-int quantityStart = input.IndexOf(openSpan);
-int quantityEnd = input.IndexOf(closingSpan);
+// foreach (string ip in ipv4Input)
+// {
+//     address = ip.Split(".", StringSplitOptions.RemoveEmptyEntries);
 
-int divStart = input.IndexOf(openDiv);
-int divEnd = input.IndexOf(closeDiv);
+//     ValidateLength();
+//     ValidateZeroes();
+//     ValidateRange();
 
-quantityStart += openSpan.Length;
-divStart += openDiv.Length;
+//     if (validLength && validZeroes && validRange)
+//     {
+//         Console.WriteLine($"{ip} is a valid IPv4 address");
+//     }
+//     else
+//     {
+//         Console.WriteLine($"{ip} is an invalid IPv4 address");
+//     }
+// }
 
-int quantLength = quantityEnd - quantityStart;
-int divLength = divEnd - divStart;
+// void ValidateLength()
+// {
+//     validLength = address.Length == 4;
+// }
+// void ValidateZeroes()
+// {
+//     foreach (string number in address)
+//     {
+//         if (number.Length > 1 && number.StartsWith("0"))
+//         {
+//             validZeroes = false;
+//             return;
+//         }
+//     }
+//     validZeroes = true;
+// }
+// void ValidateRange()
+// {
+//     foreach (string number in address)
+//     {
+//         int value = int.Parse(number);
 
-quantity = input.Substring(quantityStart, quantLength);
-output = input.Substring(divStart, divLength);
+//         if (value < 0 || value > 255)
+//         {
+//             validRange = false;
+//             return;
+//         }
+//     }
+//     validRange = true;
+// }
 
-output = output.Replace("trade", "reg");
 
-Console.WriteLine($"Quantity: {quantity}");
-Console.WriteLine($"Output: {output}");
+Random random = new Random();
+int luck = random.Next(100);
+
+string[] text =
+{
+    "You have much to",
+    "Today is a day to",
+    "Whatever work you do",
+    "This is an ideal time to"
+};
+string[] good =
+{
+    "look forward to.",
+    "try new things!",
+    "is likely to succeed.",
+    "accomplish your dreams!"
+};
+string[] bad =
+{
+    "fear.",
+    "avoid major decisions.",
+    "may have unexpected outcomes.",
+    "re-evaluate your life."
+};
+string[] neutral =
+{
+    "appreciate.",
+    "enjoy time with friends.",
+    "should align with your values.",
+    "get in tune with nature."
+};
+
+DisplayFortune();
+luck = random.Next(100);
+DisplayFortune();
+
+void DisplayFortune()
+{
+    Console.WriteLine("A fortune teller whispers the following words:");
+    string[] fortune = (luck > 75 ? good : (luck < 25 ? bad : neutral));
+    for (int i = 0; i < 4; i++)
+    {
+        Console.Write($"{text[i]} {fortune[i]} ");
+    }
+    Console.WriteLine(" ");
+}
