@@ -10,9 +10,9 @@ class Car
 
     public Car(string companyName, string modelName, int carYear)
     {
-        company = companyName;
-        model = modelName;
-        year = carYear;
+        this.company = companyName;
+        this.model = modelName;
+        this.year = carYear;
     }
 
     static void Main()
