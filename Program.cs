@@ -2,83 +2,25 @@
 
 using System;
 
-string[] pettingZoo =
+class Car
 {
-    "alpacas",
-    "capybaras",
-    "chickens",
-    "ducks",
-    "emus",
-    "geese",
-    "goats",
-    "iguanas",
-    "kangaroos",
-    "lemurs",
-    "llamas",
-    "macaws",
-    "ostriches",
-    "pigs",
-    "ponies",
-    "rabbits",
-    "sheep",
-    "tortoises",
-};
+    public string company;
+    public string model;
+    public int year;
 
-PlanSchoolVisit("School A");
-PlanSchoolVisit("School B", 3);
-PlanSchoolVisit("School C", 2);
-
-void PlanSchoolVisit(string schoolName, int groups = 6)
-{
-    RandomizeAnimals();
-
-    string[,] group = AssignGroup(groups);
-
-    Console.WriteLine(schoolName);
-
-    PrintGroup(group);
-}
-
-void RandomizeAnimals()
-{
-    Random random = new Random();
-
-    for (int i = 0; i < pettingZoo.Length; i++)
+    public Car(string companyName, string modelName, int carYear)
     {
-        int right = random.Next(i, pettingZoo.Length);
-
-        string current = pettingZoo[i];
-        pettingZoo[i] = pettingZoo[right];
-        pettingZoo[right] = current;
-    }
-}
-
-string[,] AssignGroup(int groups = 6)
-{
-    string[,] result = new string[groups, pettingZoo.Length / groups];
-
-    int start = 0;
-
-    for (int i = 0; i < groups; i++)
-    {
-        for (int j = 0; j < result.GetLength(1); j++)
-        {
-            result[i, j] = pettingZoo[start++];
-        }
+        company = companyName;
+        model = modelName;
+        year = carYear;
     }
 
-    return result;
-}
-
-void PrintGroup(string[,] group)
-{
-    for (int i = 0; i < group.GetLength(0); i++)
+    static void Main()
     {
-        Console.Write($"Group {i + 1}: ");
-        for (int j = 0; j < group.GetLength(1); j++)
-        {
-            Console.Write($"{group[i, j]} ");
-        }
-        Console.WriteLine();
+        Car Honda = new Car("Honda", "Civic", 1998);
+
+        Console.WriteLine(
+            $"this is a {Honda.company} {Honda.model} and it came out in the year {Honda.year}"
+        );
     }
 }
